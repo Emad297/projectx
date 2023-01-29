@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Creature List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date Created</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>Owner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for creature in creatures %}
+        <tr>
+          <td>{{ creature.name }}</td>
+          <td>{{ creature.date_created }}</td>
+          <td>{{ creature.weight }}</td>
+          <td>{{ creature.height }}</td>
+          <td>{{ creature.owner }}</td>
+          <td>
+            <a href="{% url 'creature_update' creature.pk %}">Edit</a>
+            <a href="{% url 'creature_delete' creature.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'creature_create' %}">Add creature</a>
+{% endblock %}
